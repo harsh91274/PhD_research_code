@@ -1,0 +1,7 @@
+channel names:	
+velcal_acr_78mm_04/24/2016 05:18:13 PM - PS LTA - cDAQ1Mod1_ai0	velcal_acr_78mm_04/24/2016 05:18:13 PM - PS LTA - cDAQ1Mod1_ai1
+start times:	
+12/31/1903 18:00:00.000000	12/31/1903 18:00:00.000000
+dt:	
+0.000000	
+data:	

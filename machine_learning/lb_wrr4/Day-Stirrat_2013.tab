@@ -1,0 +1,59 @@
+/* DATA DESCRIPTION:
+Citation:	Day-Stirrat, Ruarri J; Flemings, Peter B; You, Yao; Aplin, Andrew C; van der Pluijm, Ben A (2012): (Table 1) Physical properties from IODP Holes 308-U1322B, 308-U1322D and 308-U1324B. PANGAEA, https://doi.org/10.1594/PANGAEA.787951, 
+	In supplement to: Day-Stirrat, RJ et al. (2012): The fabric of consolidation in Gulf of Mexico mudstones. Marine Geology, 295-298, 77-85, https://doi.org/10.1016/j.margeo.2011.12.003
+Related to:	Day-Stirrat, Ruarri J; Flemings, Peter B; You, Yao; van der Pluijm, Ben A (2013): Modification of mudstone fabric and pore structure as a result of slope failure: Ursa Basin, Gulf of Mexico. Marine Geology, 341, 58-67, https://doi.org/10.1016/j.margeo.2013.05.003
+Project(s):	Integrated Ocean Drilling Program / International Ocean Discovery Program (IODP) (URI: http://www.iodp.org/)
+Coverage:	MEDIAN LATITUDE: 28.001549 * MEDIAN LONGITUDE: -89.001051 * SOUTH-BOUND LATITUDE: 28.001329 * WEST-BOUND LONGITUDE: -89.002318 * NORTH-BOUND LATITUDE: 28.001660 * EAST-BOUND LONGITUDE: -89.000417
+	MINIMUM DEPTH, sediment/rock: 71.5 m * MAXIMUM DEPTH, sediment/rock: 579.6 m
+Event(s):	308-U1322B * LATITUDE: 28.001657 * LONGITUDE: -89.000417 * ELEVATION: -1319.5 m * Recovery: 236.79 m * CAMPAIGN: Exp308 (Gulf of Mexico Hydrogeology) (URI: https://doi.org/10.2204/iodp.proc.308.2006) * BASIS: Joides Resolution (URI: http://www-odp.tamu.edu/resolutn.html) * DEVICE: Drilling/drill rig (DRILL) * COMMENT: 29 cores; 234.5 m cored; 101 % recovered; 0 m drilled; 234.5 m penetrated
+	308-U1322D * LATITUDE: 28.001660 * LONGITUDE: -89.000420 * ELEVATION: -1318.9 m * Recovery: 27.21 m * CAMPAIGN: Exp308 (Gulf of Mexico Hydrogeology) (URI: https://doi.org/10.2204/iodp.proc.308.2006) * BASIS: Joides Resolution (URI: http://www-odp.tamu.edu/resolutn.html) * DEVICE: Drilling/drill rig (DRILL) * COMMENT: 3 cores; 26.8 m cored; 101.5 % recovered; 148.2 m drilled; 175 m penetrated
+	308-U1324B * LATITUDE: 28.001329 * LONGITUDE: -89.002318 * ELEVATION: -1056.8 m * Recovery: 569.92 m * CAMPAIGN: Exp308 (Gulf of Mexico Hydrogeology) (URI: https://doi.org/10.2204/iodp.proc.308.2006) * BASIS: Joides Resolution (URI: http://www-odp.tamu.edu/resolutn.html) * DEVICE: Drilling/drill rig (DRILL) * COMMENT: 74 cores; 608.2 m cored; 93.7 % recovered; 0 m drilled; 608.2 m penetrated
+Parameter(s):	Event label (Event)
+	Sample code/label (Sample label) * PI: Day-Stirrat, Ruarri J * METHOD: ODP sample designation (URI: hdl:10013/epic.27914.d001)
+	Sample comment (Sample comment) * PI: Day-Stirrat, Ruarri J
+	DEPTH, sediment/rock [m] (Depth) * GEOCODE * COMMENT: mbsf
+	Size fraction < 0.002 mm, > 9 phi, clay [%] (<2 µm, >9 phi) * PI: Day-Stirrat, Ruarri J
+	Void ratio (Void ratio) * PI: Day-Stirrat, Ruarri J * COMMENT: from MICP
+	Porosity [% vol] (Poros) * PI: Day-Stirrat, Ruarri J * COMMENT: from MICP
+	Radius [µm] (Radius) * PI: Day-Stirrat, Ruarri J * COMMENT: Mean Pore Radius
+	Radius [µm] (Radius) * PI: Day-Stirrat, Ruarri J * COMMENT: Pore Radius at 10% Mercury Saturation
+	Displacement pressure [psi] (Dis press) * PI: Day-Stirrat, Ruarri J
+	Void ratio (Void ratio) * PI: Day-Stirrat, Ruarri J * COMMENT: from Moisture and Density
+	Porosity [% vol] (Poros) * PI: Day-Stirrat, Ruarri J * COMMENT: from Moisture and Density
+	Overburden pressure [kPa] (Overb press) * PI: Day-Stirrat, Ruarri J
+	Hydrostatic pressure [kPa] (Sigma H) * PI: Day-Stirrat, Ruarri J
+	In-situ pressure [kPa] (Sigma) * PI: Day-Stirrat, Ruarri J
+	Overpressure [kPa] (Sigma*) * PI: Day-Stirrat, Ruarri J
+	Vertical effective stress [kPa] (SigmaV ef) * PI: Day-Stirrat, Ruarri J
+	Hydrostatic effective Stress [kPa] (Sigma vH) * PI: Day-Stirrat, Ruarri J
+	Illite (Ill) * PI: Day-Stirrat, Ruarri J * COMMENT: 1. Illite-smectite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+	Illite (Ill) * PI: Day-Stirrat, Ruarri J * COMMENT: 2. Illite-smectite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+	Illite (Ill) * PI: Day-Stirrat, Ruarri J * COMMENT: 3. Illite-smectite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+	Illite (Ill) * PI: Day-Stirrat, Ruarri J * COMMENT: 4. Illite-smectite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+	Illite (Ill) * PI: Day-Stirrat, Ruarri J * COMMENT: 5. Illite-smectite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+	Illite (Ill) * PI: Day-Stirrat, Ruarri J * COMMENT: 6. Illite-smectite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+	Illite (Ill) * PI: Day-Stirrat, Ruarri J * COMMENT: 7. Illite-smectite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+	Illite (Ill) * PI: Day-Stirrat, Ruarri J * COMMENT: 8. Illite-smectite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+	Illite (Ill) * PI: Day-Stirrat, Ruarri J * COMMENT: 9. Illite-smectite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+	Kaolinite (Kln) * PI: Day-Stirrat, Ruarri J * COMMENT: 1. Kaolinite+chlorite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+	Kaolinite (Kln) * PI: Day-Stirrat, Ruarri J * COMMENT: 2. Kaolinite+chlorite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+	Kaolinite (Kln) * PI: Day-Stirrat, Ruarri J * COMMENT: 3. Kaolinite+chlorite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+	Kaolinite (Kln) * PI: Day-Stirrat, Ruarri J * COMMENT: 4. Kaolinite+chlorite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+	Kaolinite (Kln) * PI: Day-Stirrat, Ruarri J * COMMENT: 5. Kaolinite+chlorite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+	Kaolinite (Kln) * PI: Day-Stirrat, Ruarri J * COMMENT: 6. Kaolinite+chlorite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+	Kaolinite (Kln) * PI: Day-Stirrat, Ruarri J * COMMENT: 7. Kaolinite+chlorite fabric intensity (maximum pole density in multiples of a random distribution (m.r.d.))
+License:	Creative Commons Attribution 3.0 Unported (CC-BY-3.0)
+Size:	228 data points
+*/
+Event	Sample label	Sample comment	Depth [m]	<2 µm, >9 phi [%]	Void ratio (from MICP)	Poros [% vol] (from MICP)	Radius [µm] (Mean Pore Radius)	Radius [µm] (Pore Radius at 10% Mercury Sa...)	Dis press [psi]	Void ratio (from Moisture and Density)	Poros [% vol] (from Moisture and Density)	Overb press [kPa]	Sigma H [kPa]	Sigma [kPa]	Sigma* [kPa]	SigmaV ef [kPa]	Sigma vH [kPa]	Ill (1. Illite-smectite fabric int...)	Ill (2. Illite-smectite fabric int...)	Ill (3. Illite-smectite fabric int...)	Ill (4. Illite-smectite fabric int...)	Ill (5. Illite-smectite fabric int...)	Ill (6. Illite-smectite fabric int...)	Ill (7. Illite-smectite fabric int...)	Ill (8. Illite-smectite fabric int...)	Ill (9. Illite-smectite fabric int...)	Kln (1. Kaolinite+chlorite fabric ...)	Kln (2. Kaolinite+chlorite fabric ...)	Kln (3. Kaolinite+chlorite fabric ...)	Kln (4. Kaolinite+chlorite fabric ...)	Kln (5. Kaolinite+chlorite fabric ...)	Kln (6. Kaolinite+chlorite fabric ...)	Kln (7. Kaolinite+chlorite fabric ...)
+308-U1322D	308-U1322D-2H-2	whole rock	71.5	67	0.85	46	0.110	0.190	570	1.10	52.4	15060	13970	14180	210	240	450	3	3.08														
+308-U1322D	308-U1322D-2H-4	whole rock	74.5	62	0.96	49	0.156	0.296	365	1.24	55.3	15130	14000	14220	230	250	470	3	2.88	2.42	2.24						2.94	3.94					
+308-U1322B	308-U1322B-15H-1	whole rock	126.1	62	0.56	36	0.048	0.086	1264	1.00	50.0	16440	14520	15030	520	410	920	2.49	2.4	2.64	2.59	2.68	2.55	2.65	2.51	2.62	1.71	2.63	2.41	2.51	2.52	1.71	2.62
+308-U1322B	308-U1322B-18H-6		149.9	61	0.54	35	0.050	0.077	1403	0.83	45.5	17040	14760	15410	650	480	1130	2.5	2.31								2.19	2.58	2.58	2.19			
+308-U1324B	308-U1324B-20H-6	whole rock	178.6	63	0.59	37	0.064	0.094	1148	0.86	46.2	15120	12400	12980	580	900	1480	2.53	2.61	2.68							2.47	2.56	2.56	2.47			
+308-U1324B	308-U1324B-34H-6		282.5	69	0.52	34	0.025	0.048	2274	0.75	42.9	17730	13450	14160	710	1720	2430	2.57	2.5	2.43							2.46						
+308-U1324B	308-U1324B-45X-3		345.0	44	0.41	29	0.187	0.516	210	0.68	40.3	19310	14080	14860	790	2210	3000																
+308-U1324B	308-U1324B-44H-1	whole rock	354.1	70	0.67	40	0.051	0.087	1240	0.74	42.4	19540	14170	14970	800	2280	3080	2.71	3	2.91							2.74	3.05	2.92	3.04	2.74		
+308-U1324B	308-U1324B-55X-4		425.7	63	0.47	32	0.056	0.103	1055	0.64	39.0	21350	14890	15770	890	2840	3730	2.77									2.6						
+308-U1324B	308-U1324B-70X-6		570.0	59	0.45	31	0.037	0.062	1740	0.60	37.6	24990	16340	17400	1070	3980	5040	3.45	3.17								3.04	3.62	3.61	3.04			
+308-U1324B	308-U1324B-71X-6		579.6	20	0.49	33	1.146	2.671	41	0.69	40.8	25230	16430	17510	1080	4050	5130	1.9															

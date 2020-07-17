@@ -1,0 +1,28 @@
+Log name: velcal_acr_26mm_04/24/2016 04:42:07 PM
+User: petrophysics
+Project name: C:\Users\petrophysics\Desktop\daq3.seproj
+File name: C:\Users\petrophysics\Documents\SignalExpress Data\velcal_acr_26mm_04242016_044207_PM\TDS_2014C(CH4)_Mean.tdms
+File size: 4.217kB
+Log duration: 1 second
+Log dt (s): 1
+Log iteration length (s): 1
+Number of sample in log: 1
+Log datatype: Scalar-Dbl-Generic
+Unit: V
+Log start time: 12/31/1903 18:00:05.000
+Time zone: Central Daylight Time
+Writer name: SignalExpress 2015
+Writer version: 15.0
+File format version: 2.1
+Log signal names:
+     velcal_acr_26mm_04/24/2016 04:42:07 PM - TDS 2014C(CH4) Mean
+
+
+Alarms:
+None
+
+Start conditions:
+Date/Time: 
+
+Stop conditions:
+Duration: > 5.00000

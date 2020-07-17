@@ -1,0 +1,29 @@
+Log name: velcal_st_1/5in_04/24/2016 05:46:05 PM
+User: petrophysics
+Project name: C:\Users\petrophysics\Desktop\daq3.seproj
+File name: C:\Users\petrophysics\Documents\SignalExpress Data\velcal_st_15in_04242016_054605_PM\PS_LTA.tdms
+File size: 6.693kB
+Log duration: 
+Log dt (s): 0
+Log iteration length (s): 0
+Number of sample in log: 0
+Log datatype: Time-WDT-Real
+Unit: V
+Log start time: 12/31/1903 18:00:00.000
+Time zone: Central Daylight Time
+Writer name: SignalExpress 2015
+Writer version: 15.0
+File format version: 2.1
+Log signal names:
+     velcal_st_1/5in_04/24/2016 05:46:05 PM - PS LTA - cDAQ1Mod1_ai0
+     velcal_st_1/5in_04/24/2016 05:46:05 PM - PS LTA - cDAQ1Mod1_ai1
+
+
+Alarms:
+None
+
+Start conditions:
+Date/Time: 
+
+Stop conditions:
+Duration: > 5.00000

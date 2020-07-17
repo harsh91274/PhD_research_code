@@ -1,0 +1,28 @@
+Log name: velcal_acr_26mm_04/24/2016 04:58:00 PM
+User: petrophysics
+Project name: C:\Users\petrophysics\Desktop\daq3.seproj
+File name: C:\Users\petrophysics\Documents\SignalExpress Data\velcal_acr_26mm_04242016_045800_PM\Delta_P_-_Voltages.tdms
+File size: 4.268kB
+Log duration: 5.12821 seconds
+Log dt (s): 512.821m
+Log iteration length (s): 5.12821
+Number of sample in log: 10
+Log datatype: Time-WDT-Real
+Unit: V
+Log start time: 4/24/2016 16:59:49.894
+Time zone: Central Daylight Time
+Writer name: SignalExpress 2015
+Writer version: 15.0
+File format version: 2.1
+Log signal names:
+     velcal_acr_26mm_04/24/2016 04:58:00 PM - Delta P - Voltages
+
+
+Alarms:
+None
+
+Start conditions:
+Date/Time: 
+
+Stop conditions:
+Duration: > 5.00000

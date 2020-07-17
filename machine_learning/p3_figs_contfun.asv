@@ -1,0 +1,39 @@
+clc
+clf
+clear all
+close all
+%paths
+path(path,genpath('C:\export_fig\update2'));
+path(path,genpath('C:\Program Files\Glyph & Cog\XpdfReader-win64'));
+path(path,genpath('C:\kakearney-legendflex-pkg-f29cb4e'));
+path(path,genpath('C:\kakearney-legendflex-pkg-f29cb4e\legendflex'));
+path(path,genpath('C:\Program Files\gs\gs9.22\bin'));
+path(path,genpath('C:\Program Files\MATLAB\R2010a\toolbox\linspecer'));
+path(path,genpath('C:\xpdf\xpdf-tools-win-4.00'));
+path(path,genpath('C:\xpdf\xpdf-tools-win-4.00\bin32'));
+warning('off','all')
+%%
+%read data
+
+data=xlsread('p3_data_binned.xlsx','10mpa');
+strain=data(:,29);
+mc_rate=data(:,23);
+shear_fraction=data(:,12);
+e_var=data(:,25);
+d_valuue=data(:,38);
+moment_diff=data(:,33);
+b_value=data(:,37);
+
+f1=figure;
+subplot(3,1,1);
+[ax,h1,h2]=plotyy(strain,mc_rate,strain,shear_fraction);
+hold on;
+axis tight;
+set(h1,'linewidth',2,'color','b');
+set(h2,'linewidth',2,'color','r');
+ylabel('Microcracking Rate (Events/Unit Strain)','fontsize',5,'color','b');
+ylabel(ax(2),'Shear Microcrack Fraction','fontsize',5,'color','r');
+hold on;   
+
+legend('Microcrack Rate', 'Microcrack Shear Fraction','Location','NorthEast')
+

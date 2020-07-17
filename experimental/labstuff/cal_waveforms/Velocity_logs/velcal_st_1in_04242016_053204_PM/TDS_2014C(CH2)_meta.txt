@@ -1,0 +1,28 @@
+Log name: velcal_st_1in_04/24/2016 05:32:04 PM
+User: petrophysics
+Project name: C:\Users\petrophysics\Desktop\daq3.seproj
+File name: C:\Users\petrophysics\Documents\SignalExpress Data\velcal_st_1in_04242016_053204_PM\TDS_2014C(CH2).tdms
+File size: 4.092kB
+Log duration: 250u second
+Log dt (s): 100n
+Log iteration length (s): 250u
+Number of sample in log: 2500
+Log datatype: Time-WDT-Real
+Unit: V
+Log start time: 4/24/2016 17:33:46.913
+Time zone: Central Daylight Time
+Writer name: SignalExpress 2015
+Writer version: 15.0
+File format version: 2.1
+Log signal names:
+     velcal_st_1in_04/24/2016 05:32:04 PM - TDS 2014C(CH2)
+
+
+Alarms:
+None
+
+Start conditions:
+Date/Time: 
+
+Stop conditions:
+Duration: > 5.00000

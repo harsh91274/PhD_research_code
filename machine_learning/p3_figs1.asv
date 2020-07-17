@@ -1,0 +1,269 @@
+clc
+clf
+clear all
+close all
+%paths
+path(path,genpath('C:\export_fig\update'));
+path(path,genpath('C:\Program Files\Glyph & Cog\XpdfReader-win64'));
+path(path,genpath('C:\kakearney-legendflex-pkg-f29cb4e'));
+path(path,genpath('C:\kakearney-legendflex-pkg-f29cb4e\legendflex'));
+path(path,genpath('C:\Program Files\gs\gs9.22\bin'));
+path(path,genpath('C:\Program Files\MATLAB\R2010a\toolbox\linspecer'));
+path(path,genpath('C:\xpdf\xpdf-tools-win-4.00'));
+path(path,genpath('C:\xpdf\xpdf-tools-win-4.00\bin32'));
+warning('off','all')
+
+%read data
+sf_i=xlsread('p3_test3.xlsx','berea_new','h11:h60');    %shear fraction
+sf=reshape(sf_i,5,10)';
+sef_i=xlsread('p3_test3.xlsx','berea_new','l11:l60');    %shear energy  fraction
+sef=reshape(sef_i,5,10)';
+strain_i=xlsread('p3_test3.xlsx','berea_new','m11:m60');    %axial strain  fraction
+strain=reshape(strain_i,5,10)';
+mm_i=xlsread('p3_test3.xlsx','berea_new','w11:w60');    %mean moment  fraction
+mm=reshape(mm_i,5,10)';
+mmd_i=xlsread('p3_test3.xlsx','berea_new','y11:y60');    %max moment difference
+mmd=reshape(mmd_i,5,10)';
+b_i=xlsread('p3_test3.xlsx','berea_new','z11:z60');    %b-value
+b=reshape(b_i,5,10)';
+d_i=xlsread('p3_test3.xlsx','berea_new','ab11:ab60');    %D-value
+d=reshape(d_i,5,10)';
+% p_i=xlsread('p3_test3.xlsx','berea_new','r11:s60');    %D-value
+% d=reshape(d_i,5,10)';
+stage_index=[0 1 2 3 4];    %stages for plotting
+[len,~]=size(sf);   %no of datalines
+f_cmap=linspecer(len);   %colormap
+%%
+%shearing figures
+f1=figure(1);
+for i=1:len
+    sf1_plot(i)=plot(strain(i,2:5), sf(i,2:5),'color',f_cmap(i,:),'linewidth',2);
+    hold on
+    set(sf1_plot(i),'Marker','o','Markersize',6,'MarkerEdgeColor','k','MarkerFaceColor',f_cmap(i,:));
+    hold on
+end
+
+f1_x=xlabel('Axial Strain'); f1_y=ylabel ('Fraction of Microcracks in Shear Mode'); hold on
+f1_legend=legend('0 MPa','5 MPa','10 MPa','15 MPa','20 MPa','25 MPa','30 MPa','35 MPa','40 MPa','45 MPa','location','best');
+set(f1_legend,'FontSize',9);
+set(f1_legend,'FontName','Helvetica');
+set([f1_x f1_y],'FontName','Helvetica');
+set(gcf,'Color','w'); 
+
+saveas(gcf,'temporal_sf1','mmat');
+export_fig f1 f1_temporal_sf1 -pdf -png -eps -tiff -dsvg -q101 -nocrop 
+
+f2=figure(2);
+
+for i=1:len
+    sf2_plot(i)=plot(stage_index(2:5), sf(i,2:5),'color',f_cmap(i,:),'linewidth',2);
+    hold on
+    set(sf2_plot(i),'Marker','o','Markersize',6,'MarkerEdgeColor','k','MarkerFaceColor',f_cmap(i,:));
+    hold on
+end
+
+set(gca,'xtick',[1 2 3 4]); hold on;
+f2_x=xlabel('Fracturing Stage'); f2_y=ylabel ('Fraction of Microcracks in Shear Mode'); hold on
+f2_legend=legend('0 MPa','5 MPa','10 MPa','15 MPa','20 MPa','25 MPa','30 MPa','35 MPa','40 MPa','45 MPa','location','best');
+set(f2_legend,'FontSize',9);
+set(f2_legend,'FontName','Helvetica');
+set([f2_x f2_y],'FontName','Helvetica');
+set(gcf,'Color','w'); 
+
+saveas(gcf,'temporal_sf2','mmat');
+export_fig f2 f2_temporal_sf2 -pdf -png -eps -tiff -dsvg -q101 -nocrop 
+%%
+%shear energy figures
+f3=figure(3);
+for i=1:len
+    sef1_plot(i)=plot(strain(i,2:5), sef(i,2:5),'color',f_cmap(i,:),'linewidth',2);
+    hold on
+    set(sef1_plot(i),'Marker','^','Markersize',6,'MarkerEdgeColor','k','MarkerFaceColor',f_cmap(i,:));
+    hold on
+end
+
+f3_x=xlabel('Axial Strain'); f3_y=ylabel ('Fraction of Energy from Microcracks in Shear Mode'); hold on
+f3_legend=legendflex('0 MPa','5 MPa','10 MPa','15 MPa','20 MPa','25 MPa','30 MPa','35 MPa','40 MPa','45 MPa');
+keyboard
+axp3=get(gca,'position'); axp3m=1.1.*axp3;
+set(gcf,
+f3_legend=legend('0 MPa','5 MPa','10 MPa','15 MPa','20 MPa','25 MPa','30 MPa','35 MPa','40 MPa','45 MPa','location','southeastoutside');
+set(gca,'position',axp3);
+set(f3_legend,'FontSize',9);
+set(f3_legend,'FontName','Helvetica');
+set([f3_x f3_y],'FontName','Helvetica');
+set(gcf,'Color','w'); 
+saveas(gcf,'temporal_sef1','mmat');
+export_fig f3 f3_temporal_sef1 -pdf -png -eps -tiff -dsvg -q101 -nocrop 
+
+f4=figure(4);
+
+for i=1:len
+    sef2_plot(i)=plot(stage_index(2:5), sef(i,2:5),'color',f_cmap(i,:),'linewidth',2);
+    hold on
+    set(sef2_plot(i),'Marker','^','Markersize',6,'MarkerEdgeColor','k','MarkerFaceColor',f_cmap(i,:));
+    hold on
+end
+
+set(gca,'xtick',[1 2 3 4]); hold on;
+f4_x=xlabel('Fracturing Stage'); f4_y=ylabel ('Fraction of Microcracks in Shear Mode'); hold on
+f4_legend=legend('0 MPa','5 MPa','10 MPa','15 MPa','20 MPa','25 MPa','30 MPa','35 MPa','40 MPa','45 MPa','location','SouthEastOutside');
+set(f4_legend,'FontSize',9);
+set(f4_legend,'FontName','Helvetica');
+set([f4_x f4_y],'FontName','Helvetica');
+set(gcf,'Color','w'); 
+
+saveas(gcf,'temporal_sef2','mmat');
+export_fig f4 f4_temporal_sef2 -pdf -png -eps -tiff -dsvg -q101 -nocrop 
+%%
+%moment figures
+f5=figure(5);
+for i=1:len
+    mm1_plot(i)=plot(strain(i,2:5), mm(i,2:5),'color',f_cmap(i,:),'linewidth',2);
+    hold on
+    set(mm1_plot(i),'Marker','s','Markersize',6,'MarkerEdgeColor','k','MarkerFaceColor',f_cmap(i,:));
+    hold on
+end
+
+f5_x=xlabel('Axial Strain'); f5_y=ylabel ('Mean Moment of Events'); hold on
+f5_legend=legend('0 MPa','5 MPa','10 MPa','15 MPa','20 MPa','25 MPa','30 MPa','35 MPa','40 MPa','45 MPa','location','best','NumColumns',2);
+set(f5_legend,'FontSize',9);
+set(f5_legend,'FontName','Helvetica');
+set([f5_x f5_y],'FontName','Helvetica');
+set(gcf,'Color','w'); 
+
+saveas(gcf,'temporal_mm1','mmat');
+export_fig f5 f5_temporal_mm1 -pdf -png -eps -tiff -dsvg -q101 -nocrop 
+
+f6=figure(6);
+for i=1:len
+    mm2_plot(i)=plot(stage_index(2:5), mm(i,2:5),'color',f_cmap(i,:),'linewidth',2);
+    hold on
+    set(mm2_plot(i),'Marker','s','Markersize',6,'MarkerEdgeColor','k','MarkerFaceColor',f_cmap(i,:));
+    hold on
+end
+
+set(gca,'xtick',[1 2 3 4]); hold on;
+f6_x=xlabel('Fracturing Stage'); f6_y=ylabel ('Mean Moment of Events'); hold on
+f6_legend=legend('0 MPa','5 MPa','10 MPa','15 MPa','20 MPa','25 MPa','30 MPa','35 MPa','40 MPa','45 MPa','location','best','NumColumns',2);
+set(f6_legend,'FontSize',9);
+set(f6_legend,'FontName','Helvetica');
+set([f6_x f6_y],'FontName','Helvetica');
+set(gcf,'Color','w'); 
+
+saveas(gcf,'temporal_mm2','mmat');
+export_fig f6 f6_temporal_mm2 -pdf -png -eps -tiff -dsvg -q101 -nocrop 
+%%
+%moment difference figures
+f7=figure(7);
+for i=1:len
+    mmd1_plot(i)=plot(strain(i,2:5), mmd(i,2:5),'color',f_cmap(i,:),'linewidth',2);
+    hold on
+    set(mmd1_plot(i),'Marker','p','Markersize',6,'MarkerEdgeColor','k','MarkerFaceColor',f_cmap(i,:));
+    hold on
+end
+
+f7_x=xlabel('Axial Strain'); f7_y=ylabel ('Maximum Difference in Moment Magnitude'); hold on
+f7_legend=legend('0 MPa','5 MPa','10 MPa','15 MPa','20 MPa','25 MPa','30 MPa','35 MPa','40 MPa','45 MPa','location','best','NumColumns',2);
+set(f7_legend,'FontSize',9);
+set(f7_legend,'FontName','Helvetica');
+set([f7_x f7_y],'FontName','Helvetica');
+set(gcf,'Color','w'); 
+
+saveas(gcf,'temporal_mmd1','mmat');
+export_fig f7 f7_temporal_mmd1 -pdf -png -eps -tiff -dsvg -q101 -nocrop 
+
+f8=figure(8);
+for i=1:len
+    mmd2_plot(i)=plot(stage_index(2:5), mmd(i,2:5),'color',f_cmap(i,:),'linewidth',2);
+    hold on
+    set(mmd2_plot(i),'Marker','p','Markersize',6,'MarkerEdgeColor','k','MarkerFaceColor',f_cmap(i,:));
+    hold on
+end
+
+set(gca,'xtick',[1 2 3 4]); hold on;
+f8_x=xlabel('Fracturing Stage'); f8_y=ylabel ('Maximum Difference in Moment Magnitude'); hold on
+f8_legend=legend('0 MPa','5 MPa','10 MPa','15 MPa','20 MPa','25 MPa','30 MPa','35 MPa','40 MPa','45 MPa','location','best','NumColumns',2);
+set(f8_legend,'FontSize',9);
+set(f8_legend,'FontName','Helvetica');
+set([f8_x f8_y],'FontName','Helvetica');
+set(gcf,'Color','w'); 
+
+saveas(gcf,'temporal_mmd2','mmat');
+export_fig f8 f8_temporal_mmd2 -pdf -png -eps -tiff -dsvg -q101 -nocrop 
+%%
+%b-value
+f9=figure(9);
+for i=1:len
+    b1_plot(i)=plot(strain(i,2:5), b(i,2:5),'color',f_cmap(i,:),'linewidth',2);
+    hold on
+    set(b1_plot(i),'Marker','v','Markersize',6,'MarkerEdgeColor','k','MarkerFaceColor',f_cmap(i,:));
+    hold on
+end
+
+f9_x=xlabel('Axial Strain'); f9_y=ylabel ('b-value'); hold on
+f9_legend=legend('0 MPa','5 MPa','10 MPa','15 MPa','20 MPa','25 MPa','30 MPa','35 MPa','40 MPa','45 MPa','location','best','NumColumns',2);
+set(f9_legend,'FontSize',9);
+set(f9_legend,'FontName','Helvetica');
+set([f9_x f9_y],'FontName','Helvetica');
+set(gcf,'Color','w'); 
+
+saveas(gcf,'temporal_b1','mmat');
+export_fig f9 f9_temporal_b1 -pdf -png -eps -tiff -dsvg -q101 -nocrop 
+
+f10=figure(10);
+for i=1:len
+    b2_plot(i)=plot(stage_index(2:5), b(i,2:5),'color',f_cmap(i,:),'linewidth',2);
+    hold on
+    set(b2_plot(i),'Marker','v','Markersize',6,'MarkerEdgeColor','k','MarkerFaceColor',f_cmap(i,:));
+    hold on
+end
+
+set(gca,'xtick',[1 2 3 4]); hold on;
+f10_x=xlabel('Fracturing Stage'); f10_y=ylabel ('b-value'); hold on
+f10_legend=legend('0 MPa','5 MPa','10 MPa','15 MPa','20 MPa','25 MPa','30 MPa','35 MPa','40 MPa','45 MPa','location','best','NumColumns',2);
+set(f10_legend,'FontSize',9);
+set(f10_legend,'FontName','Helvetica');
+set([f10_x f10_y],'FontName','Helvetica');
+set(gcf,'Color','w'); 
+
+saveas(gcf,'temporal_b2','mmat');
+export_fig f10 f10_temporal_b2 -pdf -png -eps -tiff -dsvg -q101 -nocrop 
+%%
+%D-value
+f11=figure(11);
+for i=1:len
+    d_plot(i)=plot(strain(i,2:5), d(i,2:5),'color',f_cmap(i,:),'linewidth',2);
+    hold on
+    set(d_plot(i),'Marker','h','Markersize',6,'MarkerEdgeColor','k','MarkerFaceColor',f_cmap(i,:));
+    hold on
+end
+
+f11_x=xlabel('Axial Strain'); f11_y=ylabel ('b-value'); hold on
+f11_legend=legend('0 MPa','5 MPa','10 MPa','15 MPa','20 MPa','25 MPa','30 MPa','35 MPa','40 MPa','45 MPa','location','best','NumColumns',2);
+set(f11_legend,'FontSize',9);
+set(f11_legend,'FontName','Helvetica');
+set([f1_x f11_y],'FontName','Helvetica');
+set(gcf,'Color','w'); 
+
+saveas(gcf,'temporal_d1','mmat');
+export_fig f11 f11_temporal_d1 -pdf -png -eps -tiff -dsvg -q101 -nocrop 
+
+f12=figure(12);
+for i=1:len
+    d2_plot(i)=plot(stage_index(2:5), d(i,2:5),'color',f_cmap(i,:),'linewidth',2);
+    hold on
+    set(d2_plot(i),'Marker','h','Markersize',6,'MarkerEdgeColor','k','MarkerFaceColor',f_cmap(i,:));
+    hold on
+end
+
+set(gca,'xtick',[1 2 3 4]); hold on;
+f12_x=xlabel('Fracturing Stage'); f12_y=ylabel ('b-value'); hold on
+f12_legend=legend('0 MPa','5 MPa','10 MPa','15 MPa','20 MPa','25 MPa','30 MPa','35 MPa','40 MPa','45 MPa','location','best','NumColumns',2);
+set(f12_legend,'FontSize',9);
+set(f12_legend,'FontName','Helvetica');
+set([f12_x f12_y],'FontName','Helvetica');
+set(gcf,'Color','w'); 
+
+saveas(gcf,'temporal_d2','mmat');
+export_fig f12 f12_temporal_d2 -pdf -png -eps -tiff -dsvg -q101 -nocrop 

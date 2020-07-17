@@ -1,0 +1,29 @@
+Log name: velcal_st_1/5in_04/24/2016 05:47:59 PM
+User: petrophysics
+Project name: C:\Users\petrophysics\Desktop\daq3.seproj
+File name: C:\Users\petrophysics\Documents\SignalExpress Data\velcal_st_15in_04242016_054759_PM\Voltage.tdms
+File size: 6.729kB
+Log duration: 5.12821 seconds
+Log dt (s): 512.821m
+Log iteration length (s): 5.12821
+Number of sample in log: 10
+Log datatype: Time-WDT-Real
+Unit: V
+Log start time: 4/24/2016 17:49:48.280
+Time zone: Central Daylight Time
+Writer name: SignalExpress 2015
+Writer version: 15.0
+File format version: 2.1
+Log signal names:
+     velcal_st_1/5in_04/24/2016 05:47:59 PM - Voltage - cDAQ1Mod1_ai0
+     velcal_st_1/5in_04/24/2016 05:47:59 PM - Voltage - cDAQ1Mod1_ai1
+
+
+Alarms:
+None
+
+Start conditions:
+Date/Time: 
+
+Stop conditions:
+Duration: > 5.00000

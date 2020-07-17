@@ -1,0 +1,2339 @@
+RESTART SAVE000.SAV
+HIL157 - Frontal accretion, Hikurangi Margin
+* Using original HIL000a/SAVEK.SAV restart file; note unbonded initially
+* Restart using rb050k5.8.
+*
+* (4/28/2016) Run with moment transmitting bonds. Note, have to zero 
+* trans & rot velocities, as well as rotations before bonding;
+* and sculpt 20 km long super-wedge with 5 degree taper
+*
+* Add strong backstop over weak decollement - HIL*5* - series
+*
+* set plotting units for 1" vector
+DMX 100
+FMX 5E12
+*
+* Reset friction values for decollement
+FRIC 0.30 1 1
+FRIC 0.30 1 2
+FRIC 0.00 1 3
+FRIC 0.10 1 5
+FRIC 0.30 2 2
+FRIC 0.00 2 3
+FRIC 0.00 2 5
+FRIC 0.10 5 5 
+FRIC 0.10 5 6
+*
+* Set particle and contact damping parameters
+DAMP 0.01 0.01 1 0
+CDMP 0.7 0.7 1 1
+HDMP 0.2 1.0 1 1
+*
+* Set numerical parameters 
+FRAC 0.1
+TOL 3.5
+XRES 1.0
+TS 2E-2
+*
+* gravitational acceleration.
+GRAV 0.0 -9.8 0.0 
+*
+* NOTE, YOU CAN RESTART FROM THIS STATE, MODIFYING LINES BELOW
+*  AND OTHER PARAMETERS THAT YOU WANT TO CHANGE....
+*
+* Pre-sculpt upper wedge (and below)
+*
+POL 1  0 500  50 5750  20000 4000  20000 12000  50 12000
+PRP 1 EROD x
+*
+POL 1  0 500  20000 4000  119950 4000  119950 12000  20000 12000
+PRP 1 EROD x
+*
+* Let rebound and come to equilibrium
+GRID 0 0 0 0 0 0
+C 5000
+*
+* Resculpt upper wedge (and below) - may not be necesssary
+*
+POL 1  0 500  50 5750  20000 4000  20000 12000  50 12000
+PRP 1 EROD x
+*
+POL 1  0 500  20000 4000  119950 4000  119950 12000  20000 12000
+PRP 1 EROD x
+*
+ZERO
+RZER
+*
+* Define alternating blue and yellow layers
+LAY    50 800 7
+LAY  800 1200 2
+LAY 1200 1750 7
+*
+LAY 2400 3000 7
+LAY 3000 3400 2
+LAY 3400 4000 7
+*
+LAY 4001 6625 6
+*
+* Capture backstop and set to stype 2 (35 degree slope)
+POL 1  0 500  50 50  14287 50  20000 4000  50 5750
+PRP 1 SURF  x 2
+PRP 1 COL  x 5
+*
+* Capture left wall with polygon 4
+POL  4  0 500   30 110  50 12000  50 12000  30 110
+*
+* reset x-velocities for left wall
+PRP 4  VEL 1E0 0 0
+*
+* Capture decollement layer with and set to stype 5
+POL 3  0 500   0 50  60000 50  60000 150  0 150
+*
+* reset surface to type 5, and color light gray
+PRP 3  SURF  x 5
+PRP 3  COL   x 0
+*
+* Capture decollement below backstop and set to stype 3
+POL  2  0 500   0 50  14287 50  14287 150  0 150
+PRP 2 SURF  x 3
+PRP 2 COL  x 3
+*
+* Set surface pair bonding parameters
+BON  2E08 2E08  1E07 2E07  1 1
+BON  1E10 0.3E10  4E10 8E10  2 1
+BON  1E10 0.3E10  4E10 8E10  2 2
+*
+* Bond particles throughout for separations less than 0.0
+MKM 0.0  1 1
+MKM 0.0  1 2
+MKM 0.0  2 2
+*
+* Start simulation
+*
+* Snapshot of initial configuration
+PR S000.out G I S B C
+PL B000.ps BO D
+PL F000.ps BO F
+PL SAVE SAVE
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND001.OUT
+C 4000
+PR S001.out G I S B C
+PL B001.ps BO D ROT
+PL D001.ps BO RDIS
+PL F001.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND002.OUT
+C 4000
+PR S002.out G I S B C
+PL B002.ps BO D ROT
+PL D002.ps BO RDIS
+PL F002.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND003.OUT
+C 4000
+PR S003.out G I S B C
+PL B003.ps BO D ROT
+PL D003.ps BO RDIS
+PL F003.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND004.OUT
+C 4000
+PR S004.out G I S B C
+PL B004.ps BO D ROT
+PL D004.ps BO RDIS
+PL F004.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND005.OUT
+C 4000
+PR S005.out G I S B C
+PL B005.ps BO D ROT
+PL D005.ps BO RDIS
+PL F005.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND006.OUT
+C 4000
+PR S006.out G I S B C
+PL B006.ps BO D ROT
+PL D006.ps BO RDIS
+PL F006.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND007.OUT
+C 4000
+PR S007.out G I S B C
+PL B007.ps BO D ROT
+PL D007.ps BO RDIS
+PL F007.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND008.OUT
+C 4000
+PR S008.out G I S B C
+PL B008.ps BO D ROT
+PL D008.ps BO RDIS
+PL F008.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND009.OUT
+C 4000
+PR S009.out G I S B C
+PL B009.ps BO D ROT
+PL D009.ps BO RDIS
+PL F009.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND010.OUT
+C 4000
+PR S010.out G I S B C
+PL B010.ps BO D ROT
+PL D010.ps BO RDIS
+PL F010.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND011.OUT
+C 4000
+PR S011.out G I S B C
+PL B011.ps BO D ROT
+PL D011.ps BO RDIS
+PL F011.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND012.OUT
+C 4000
+PR S012.out G I S B C
+PL B012.ps BO D ROT
+PL D012.ps BO RDIS
+PL F012.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND013.OUT
+C 4000
+PR S013.out G I S B C
+PL B013.ps BO D ROT
+PL D013.ps BO RDIS
+PL F013.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND014.OUT
+C 4000
+PR S014.out G I S B C
+PL B014.ps BO D ROT
+PL D014.ps BO RDIS
+PL F014.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND015.OUT
+C 4000
+PR S015.out G I S B C
+PL B015.ps BO D ROT
+PL D015.ps BO RDIS
+PL F015.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND016.OUT
+C 4000
+PR S016.out G I S B C
+PL B016.ps BO D ROT
+PL D016.ps BO RDIS
+PL F016.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND017.OUT
+C 4000
+PR S017.out G I S B C
+PL B017.ps BO D ROT
+PL D017.ps BO RDIS
+PL F017.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND018.OUT
+C 4000
+PR S018.out G I S B C
+PL B018.ps BO D ROT
+PL D018.ps BO RDIS
+PL F018.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND019.OUT
+C 4000
+PR S019.out G I S B C
+PL B019.ps BO D ROT
+PL D019.ps BO RDIS
+PL F019.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND020.OUT
+C 4000
+PR S020.out G I S B C
+PL B020.ps BO D ROT
+PL D020.ps BO RDIS
+PL F020.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND021.OUT
+C 4000
+PR S021.out G I S B C
+PL B021.ps BO D ROT
+PL D021.ps BO RDIS
+PL F021.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND022.OUT
+C 4000
+PR S022.out G I S B C
+PL B022.ps BO D ROT
+PL D022.ps BO RDIS
+PL F022.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND023.OUT
+C 4000
+PR S023.out G I S B C
+PL B023.ps BO D ROT
+PL D023.ps BO RDIS
+PL F023.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND024.OUT
+C 4000
+PR S024.out G I S B C
+PL B024.ps BO D ROT
+PL D024.ps BO RDIS
+PL F024.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND025.OUT
+C 4000
+PR S025.out G I S B C
+PL B025.ps BO D ROT
+PL D025.ps BO RDIS
+PL F025.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND026.OUT
+C 4000
+PR S026.out G I S B C
+PL B026.ps BO D ROT
+PL D026.ps BO RDIS
+PL F026.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND027.OUT
+C 4000
+PR S027.out G I S B C
+PL B027.ps BO D ROT
+PL D027.ps BO RDIS
+PL F027.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND028.OUT
+C 4000
+PR S028.out G I S B C
+PL B028.ps BO D ROT
+PL D028.ps BO RDIS
+PL F028.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND029.OUT
+C 4000
+PR S029.out G I S B C
+PL B029.ps BO D ROT
+PL D029.ps BO RDIS
+PL F029.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND030.OUT
+C 4000
+PR S030.out G I S B C
+PL B030.ps BO D ROT
+PL D030.ps BO RDIS
+PL F030.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND031.OUT
+C 4000
+PR S031.out G I S B C
+PL B031.ps BO D ROT
+PL D031.ps BO RDIS
+PL F031.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND032.OUT
+C 4000
+PR S032.out G I S B C
+PL B032.ps BO D ROT
+PL D032.ps BO RDIS
+PL F032.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND033.OUT
+C 4000
+PR S033.out G I S B C
+PL B033.ps BO D ROT
+PL D033.ps BO RDIS
+PL F033.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND034.OUT
+C 4000
+PR S034.out G I S B C
+PL B034.ps BO D ROT
+PL D034.ps BO RDIS
+PL F034.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND035.OUT
+C 4000
+PR S035.out G I S B C
+PL B035.ps BO D ROT
+PL D035.ps BO RDIS
+PL F035.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND036.OUT
+C 4000
+PR S036.out G I S B C
+PL B036.ps BO D ROT
+PL D036.ps BO RDIS
+PL F036.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND037.OUT
+C 4000
+PR S037.out G I S B C
+PL B037.ps BO D ROT
+PL D037.ps BO RDIS
+PL F037.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND038.OUT
+C 4000
+PR S038.out G I S B C
+PL B038.ps BO D ROT
+PL D038.ps BO RDIS
+PL F038.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND039.OUT
+C 4000
+PR S039.out G I S B C
+PL B039.ps BO D ROT
+PL D039.ps BO RDIS
+PL F039.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND040.OUT
+C 4000
+PR S040.out G I S B C
+PL B040.ps BO D ROT
+PL D040.ps BO RDIS
+PL F040.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND041.OUT
+C 4000
+PR S041.out G I S B C
+PL B041.ps BO D ROT
+PL D041.ps BO RDIS
+PL F041.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND042.OUT
+C 4000
+PR S042.out G I S B C
+PL B042.ps BO D ROT
+PL D042.ps BO RDIS
+PL F042.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND043.OUT
+C 4000
+PR S043.out G I S B C
+PL B043.ps BO D ROT
+PL D043.ps BO RDIS
+PL F043.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND044.OUT
+C 4000
+PR S044.out G I S B C
+PL B044.ps BO D ROT
+PL D044.ps BO RDIS
+PL F044.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND045.OUT
+C 4000
+PR S045.out G I S B C
+PL B045.ps BO D ROT
+PL D045.ps BO RDIS
+PL F045.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND046.OUT
+C 4000
+PR S046.out G I S B C
+PL B046.ps BO D ROT
+PL D046.ps BO RDIS
+PL F046.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND047.OUT
+C 4000
+PR S047.out G I S B C
+PL B047.ps BO D ROT
+PL D047.ps BO RDIS
+PL F047.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND048.OUT
+C 4000
+PR S048.out G I S B C
+PL B048.ps BO D ROT
+PL D048.ps BO RDIS
+PL F048.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND049.OUT
+C 4000
+PR S049.out G I S B C
+PL B049.ps BO D ROT
+PL D049.ps BO RDIS
+PL F049.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND050.OUT
+C 4000
+PR S050.out G I S B C
+PL B050.ps BO D ROT
+PL D050.ps BO RDIS
+PL F050.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE050.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND051.OUT
+C 4000
+PR S051.out G I S B C
+PL B051.ps BO D ROT
+PL D051.ps BO RDIS
+PL F051.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND052.OUT
+C 4000
+PR S052.out G I S B C
+PL B052.ps BO D ROT
+PL D052.ps BO RDIS
+PL F052.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND053.OUT
+C 4000
+PR S053.out G I S B C
+PL B053.ps BO D ROT
+PL D053.ps BO RDIS
+PL F053.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND054.OUT
+C 4000
+PR S054.out G I S B C
+PL B054.ps BO D ROT
+PL D054.ps BO RDIS
+PL F054.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND055.OUT
+C 4000
+PR S055.out G I S B C
+PL B055.ps BO D ROT
+PL D055.ps BO RDIS
+PL F055.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND056.OUT
+C 4000
+PR S056.out G I S B C
+PL B056.ps BO D ROT
+PL D056.ps BO RDIS
+PL F056.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND057.OUT
+C 4000
+PR S057.out G I S B C
+PL B057.ps BO D ROT
+PL D057.ps BO RDIS
+PL F057.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND058.OUT
+C 4000
+PR S058.out G I S B C
+PL B058.ps BO D ROT
+PL D058.ps BO RDIS
+PL F058.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND059.OUT
+C 4000
+PR S059.out G I S B C
+PL B059.ps BO D ROT
+PL D059.ps BO RDIS
+PL F059.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND060.OUT
+C 4000
+PR S060.out G I S B C
+PL B060.ps BO D ROT
+PL D060.ps BO RDIS
+PL F060.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND061.OUT
+C 4000
+PR S061.out G I S B C
+PL B061.ps BO D ROT
+PL D061.ps BO RDIS
+PL F061.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND062.OUT
+C 4000
+PR S062.out G I S B C
+PL B062.ps BO D ROT
+PL D062.ps BO RDIS
+PL F062.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND063.OUT
+C 4000
+PR S063.out G I S B C
+PL B063.ps BO D ROT
+PL D063.ps BO RDIS
+PL F063.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND064.OUT
+C 4000
+PR S064.out G I S B C
+PL B064.ps BO D ROT
+PL D064.ps BO RDIS
+PL F064.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND065.OUT
+C 4000
+PR S065.out G I S B C
+PL B065.ps BO D ROT
+PL D065.ps BO RDIS
+PL F065.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND066.OUT
+C 4000
+PR S066.out G I S B C
+PL B066.ps BO D ROT
+PL D066.ps BO RDIS
+PL F066.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND067.OUT
+C 4000
+PR S067.out G I S B C
+PL B067.ps BO D ROT
+PL D067.ps BO RDIS
+PL F067.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND068.OUT
+C 4000
+PR S068.out G I S B C
+PL B068.ps BO D ROT
+PL D068.ps BO RDIS
+PL F068.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND069.OUT
+C 4000
+PR S069.out G I S B C
+PL B069.ps BO D ROT
+PL D069.ps BO RDIS
+PL F069.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND070.OUT
+C 4000
+PR S070.out G I S B C
+PL B070.ps BO D ROT
+PL D070.ps BO RDIS
+PL F070.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND071.OUT
+C 4000
+PR S071.out G I S B C
+PL B071.ps BO D ROT
+PL D071.ps BO RDIS
+PL F071.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND072.OUT
+C 4000
+PR S072.out G I S B C
+PL B072.ps BO D ROT
+PL D072.ps BO RDIS
+PL F072.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND073.OUT
+C 4000
+PR S073.out G I S B C
+PL B073.ps BO D ROT
+PL D073.ps BO RDIS
+PL F073.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND074.OUT
+C 4000
+PR S074.out G I S B C
+PL B074.ps BO D ROT
+PL D074.ps BO RDIS
+PL F074.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND075.OUT
+C 4000
+PR S075.out G I S B C
+PL B075.ps BO D ROT
+PL D075.ps BO RDIS
+PL F075.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND076.OUT
+C 4000
+PR S076.out G I S B C
+PL B076.ps BO D ROT
+PL D076.ps BO RDIS
+PL F076.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND077.OUT
+C 4000
+PR S077.out G I S B C
+PL B077.ps BO D ROT
+PL D077.ps BO RDIS
+PL F077.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND078.OUT
+C 4000
+PR S078.out G I S B C
+PL B078.ps BO D ROT
+PL D078.ps BO RDIS
+PL F078.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND079.OUT
+C 4000
+PR S079.out G I S B C
+PL B079.ps BO D ROT
+PL D079.ps BO RDIS
+PL F079.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND080.OUT
+C 4000
+PR S080.out G I S B C
+PL B080.ps BO D ROT
+PL D080.ps BO RDIS
+PL F080.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND081.OUT
+C 4000
+PR S081.out G I S B C
+PL B081.ps BO D ROT
+PL D081.ps BO RDIS
+PL F081.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND082.OUT
+C 4000
+PR S082.out G I S B C
+PL B082.ps BO D ROT
+PL D082.ps BO RDIS
+PL F082.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND083.OUT
+C 4000
+PR S083.out G I S B C
+PL B083.ps BO D ROT
+PL D083.ps BO RDIS
+PL F083.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND084.OUT
+C 4000
+PR S084.out G I S B C
+PL B084.ps BO D ROT
+PL D084.ps BO RDIS
+PL F084.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND085.OUT
+C 4000
+PR S085.out G I S B C
+PL B085.ps BO D ROT
+PL D085.ps BO RDIS
+PL F085.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND086.OUT
+C 4000
+PR S086.out G I S B C
+PL B086.ps BO D ROT
+PL D086.ps BO RDIS
+PL F086.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND087.OUT
+C 4000
+PR S087.out G I S B C
+PL B087.ps BO D ROT
+PL D087.ps BO RDIS
+PL F087.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND088.OUT
+C 4000
+PR S088.out G I S B C
+PL B088.ps BO D ROT
+PL D088.ps BO RDIS
+PL F088.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND089.OUT
+C 4000
+PR S089.out G I S B C
+PL B089.ps BO D ROT
+PL D089.ps BO RDIS
+PL F089.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND090.OUT
+C 4000
+PR S090.out G I S B C
+PL B090.ps BO D ROT
+PL D090.ps BO RDIS
+PL F090.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND091.OUT
+C 4000
+PR S091.out G I S B C
+PL B091.ps BO D ROT
+PL D091.ps BO RDIS
+PL F091.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND092.OUT
+C 4000
+PR S092.out G I S B C
+PL B092.ps BO D ROT
+PL D092.ps BO RDIS
+PL F092.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND093.OUT
+C 4000
+PR S093.out G I S B C
+PL B093.ps BO D ROT
+PL D093.ps BO RDIS
+PL F093.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND094.OUT
+C 4000
+PR S094.out G I S B C
+PL B094.ps BO D ROT
+PL D094.ps BO RDIS
+PL F094.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND095.OUT
+C 4000
+PR S095.out G I S B C
+PL B095.ps BO D ROT
+PL D095.ps BO RDIS
+PL F095.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND096.OUT
+C 4000
+PR S096.out G I S B C
+PL B096.ps BO D ROT
+PL D096.ps BO RDIS
+PL F096.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND097.OUT
+C 4000
+PR S097.out G I S B C
+PL B097.ps BO D ROT
+PL D097.ps BO RDIS
+PL F097.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND098.OUT
+C 4000
+PR S098.out G I S B C
+PL B098.ps BO D ROT
+PL D098.ps BO RDIS
+PL F098.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND099.OUT
+C 4000
+PR S099.out G I S B C
+PL B099.ps BO D ROT
+PL D099.ps BO RDIS
+PL F099.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND100.OUT
+C 4000
+PR S100.out G I S B C
+PL B100.ps BO D ROT
+PL D100.ps BO RDIS
+PL F100.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE100.SAV
+**
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND101.OUT
+C 4000
+PR S101.out G I S B C
+PL B101.ps BO D ROT
+PL D101.ps BO RDIS
+PL F101.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND102.OUT
+C 4000
+PR S102.out G I S B C
+PL B102.ps BO D ROT
+PL D102.ps BO RDIS
+PL F102.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND103.OUT
+C 4000
+PR S103.out G I S B C
+PL B103.ps BO D ROT
+PL D103.ps BO RDIS
+PL F103.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND104.OUT
+C 4000
+PR S104.out G I S B C
+PL B104.ps BO D ROT
+PL D104.ps BO RDIS
+PL F104.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND105.OUT
+C 4000
+PR S105.out G I S B C
+PL B105.ps BO D ROT
+PL D105.ps BO RDIS
+PL F105.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND106.OUT
+C 4000
+PR S106.out G I S B C
+PL B106.ps BO D ROT
+PL D106.ps BO RDIS
+PL F106.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND107.OUT
+C 4000
+PR S107.out G I S B C
+PL B107.ps BO D ROT
+PL D107.ps BO RDIS
+PL F107.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND108.OUT
+C 4000
+PR S108.out G I S B C
+PL B108.ps BO D ROT
+PL D108.ps BO RDIS
+PL F108.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND109.OUT
+C 4000
+PR S109.out G I S B C
+PL B109.ps BO D ROT
+PL D109.ps BO RDIS
+PL F109.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND110.OUT
+C 4000
+PR S110.out G I S B C
+PL B110.ps BO D ROT
+PL D110.ps BO RDIS
+PL F110.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND111.OUT
+C 4000
+PR S111.out G I S B C
+PL B111.ps BO D ROT
+PL D111.ps BO RDIS
+PL F111.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND112.OUT
+C 4000
+PR S112.out G I S B C
+PL B112.ps BO D ROT
+PL D112.ps BO RDIS
+PL F112.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND113.OUT
+C 4000
+PR S113.out G I S B C
+PL B113.ps BO D ROT
+PL D113.ps BO RDIS
+PL F113.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND114.OUT
+C 4000
+PR S114.out G I S B C
+PL B114.ps BO D ROT
+PL D114.ps BO RDIS
+PL F114.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND115.OUT
+C 4000
+PR S115.out G I S B C
+PL B115.ps BO D ROT
+PL D115.ps BO RDIS
+PL F115.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND116.OUT
+C 4000
+PR S116.out G I S B C
+PL B116.ps BO D ROT
+PL D116.ps BO RDIS
+PL F116.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND117.OUT
+C 4000
+PR S117.out G I S B C
+PL B117.ps BO D ROT
+PL D117.ps BO RDIS
+PL F117.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND118.OUT
+C 4000
+PR S118.out G I S B C
+PL B118.ps BO D ROT
+PL D118.ps BO RDIS
+PL F118.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND119.OUT
+C 4000
+PR S119.out G I S B C
+PL B119.ps BO D ROT
+PL D119.ps BO RDIS
+PL F119.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND120.OUT
+C 4000
+PR S120.out G I S B C
+PL B120.ps BO D ROT
+PL D120.ps BO RDIS
+PL F120.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND121.OUT
+C 4000
+PR S121.out G I S B C
+PL B121.ps BO D ROT
+PL D121.ps BO RDIS
+PL F121.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND122.OUT
+C 4000
+PR S122.out G I S B C
+PL B122.ps BO D ROT
+PL D122.ps BO RDIS
+PL F122.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND123.OUT
+C 4000
+PR S123.out G I S B C
+PL B123.ps BO D ROT
+PL D123.ps BO RDIS
+PL F123.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND124.OUT
+C 4000
+PR S124.out G I S B C
+PL B124.ps BO D ROT
+PL D124.ps BO RDIS
+PL F124.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND125.OUT
+C 4000
+PR S125.out G I S B C
+PL B125.ps BO D ROT
+PL D125.ps BO RDIS
+PL F125.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND126.OUT
+C 4000
+PR S126.out G I S B C
+PL B126.ps BO D ROT
+PL D126.ps BO RDIS
+PL F126.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND127.OUT
+C 4000
+PR S127.out G I S B C
+PL B127.ps BO D ROT
+PL D127.ps BO RDIS
+PL F127.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND128.OUT
+C 4000
+PR S128.out G I S B C
+PL B128.ps BO D ROT
+PL D128.ps BO RDIS
+PL F128.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND129.OUT
+C 4000
+PR S129.out G I S B C
+PL B129.ps BO D ROT
+PL D129.ps BO RDIS
+PL F129.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND130.OUT
+C 4000
+PR S130.out G I S B C
+PL B130.ps BO D ROT
+PL D130.ps BO RDIS
+PL F130.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND131.OUT
+C 4000
+PR S131.out G I S B C
+PL B131.ps BO D ROT
+PL D131.ps BO RDIS
+PL F131.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND132.OUT
+C 4000
+PR S132.out G I S B C
+PL B132.ps BO D ROT
+PL D132.ps BO RDIS
+PL F132.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND133.OUT
+C 4000
+PR S133.out G I S B C
+PL B133.ps BO D ROT
+PL D133.ps BO RDIS
+PL F133.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND134.OUT
+C 4000
+PR S134.out G I S B C
+PL B134.ps BO D ROT
+PL D134.ps BO RDIS
+PL F134.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND135.OUT
+C 4000
+PR S135.out G I S B C
+PL B135.ps BO D ROT
+PL D135.ps BO RDIS
+PL F135.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND136.OUT
+C 4000
+PR S136.out G I S B C
+PL B136.ps BO D ROT
+PL D136.ps BO RDIS
+PL F136.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND137.OUT
+C 4000
+PR S137.out G I S B C
+PL B137.ps BO D ROT
+PL D137.ps BO RDIS
+PL F137.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND138.OUT
+C 4000
+PR S138.out G I S B C
+PL B138.ps BO D ROT
+PL D138.ps BO RDIS
+PL F138.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND139.OUT
+C 4000
+PR S139.out G I S B C
+PL B139.ps BO D ROT
+PL D139.ps BO RDIS
+PL F139.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND140.OUT
+C 4000
+PR S140.out G I S B C
+PL B140.ps BO D ROT
+PL D140.ps BO RDIS
+PL F140.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND141.OUT
+C 4000
+PR S141.out G I S B C
+PL B141.ps BO D ROT
+PL D141.ps BO RDIS
+PL F141.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND142.OUT
+C 4000
+PR S142.out G I S B C
+PL B142.ps BO D ROT
+PL D142.ps BO RDIS
+PL F142.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND143.OUT
+C 4000
+PR S143.out G I S B C
+PL B143.ps BO D ROT
+PL D143.ps BO RDIS
+PL F143.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND144.OUT
+C 4000
+PR S144.out G I S B C
+PL B144.ps BO D ROT
+PL D144.ps BO RDIS
+PL F144.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND145.OUT
+C 4000
+PR S145.out G I S B C
+PL B145.ps BO D ROT
+PL D145.ps BO RDIS
+PL F145.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND146.OUT
+C 4000
+PR S146.out G I S B C
+PL B146.ps BO D ROT
+PL D146.ps BO RDIS
+PL F146.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND147.OUT
+C 4000
+PR S147.out G I S B C
+PL B147.ps BO D ROT
+PL D147.ps BO RDIS
+PL F147.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND148.OUT
+C 4000
+PR S148.out G I S B C
+PL B148.ps BO D ROT
+PL D148.ps BO RDIS
+PL F148.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND149.OUT
+C 4000
+PR S149.out G I S B C
+PL B149.ps BO D ROT
+PL D149.ps BO RDIS
+PL F149.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND150.OUT
+C 4000
+PR S150.out G I S B C
+PL B150.ps BO D ROT
+PL D150.ps BO RDIS
+PL F150.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE150.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND151.OUT
+C 4000
+PR S151.out G I S B C
+PL B151.ps BO D ROT
+PL D151.ps BO RDIS
+PL F151.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND152.OUT
+C 4000
+PR S152.out G I S B C
+PL B152.ps BO D ROT
+PL D152.ps BO RDIS
+PL F152.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND153.OUT
+C 4000
+PR S153.out G I S B C
+PL B153.ps BO D ROT
+PL D153.ps BO RDIS
+PL F153.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND154.OUT
+C 4000
+PR S154.out G I S B C
+PL B154.ps BO D ROT
+PL D154.ps BO RDIS
+PL F154.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND155.OUT
+C 4000
+PR S155.out G I S B C
+PL B155.ps BO D ROT
+PL D155.ps BO RDIS
+PL F155.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND156.OUT
+C 4000
+PR S156.out G I S B C
+PL B156.ps BO D ROT
+PL D156.ps BO RDIS
+PL F156.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND157.OUT
+C 4000
+PR S157.out G I S B C
+PL B157.ps BO D ROT
+PL D157.ps BO RDIS
+PL F157.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND158.OUT
+C 4000
+PR S158.out G I S B C
+PL B158.ps BO D ROT
+PL D158.ps BO RDIS
+PL F158.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND159.OUT
+C 4000
+PR S159.out G I S B C
+PL B159.ps BO D ROT
+PL D159.ps BO RDIS
+PL F159.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND160.OUT
+C 4000
+PR S160.out G I S B C
+PL B160.ps BO D ROT
+PL D160.ps BO RDIS
+PL F160.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND161.OUT
+C 4000
+PR S161.out G I S B C
+PL B161.ps BO D ROT
+PL D161.ps BO RDIS
+PL F161.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND162.OUT
+C 4000
+PR S162.out G I S B C
+PL B162.ps BO D ROT
+PL D162.ps BO RDIS
+PL F162.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND163.OUT
+C 4000
+PR S163.out G I S B C
+PL B163.ps BO D ROT
+PL D163.ps BO RDIS
+PL F163.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND164.OUT
+C 4000
+PR S164.out G I S B C
+PL B164.ps BO D ROT
+PL D164.ps BO RDIS
+PL F164.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND165.OUT
+C 4000
+PR S165.out G I S B C
+PL B165.ps BO D ROT
+PL D165.ps BO RDIS
+PL F165.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND166.OUT
+C 4000
+PR S166.out G I S B C
+PL B166.ps BO D ROT
+PL D166.ps BO RDIS
+PL F166.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND167.OUT
+C 4000
+PR S167.out G I S B C
+PL B167.ps BO D ROT
+PL D167.ps BO RDIS
+PL F167.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND168.OUT
+C 4000
+PR S168.out G I S B C
+PL B168.ps BO D ROT
+PL D168.ps BO RDIS
+PL F168.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND169.OUT
+C 4000
+PR S169.out G I S B C
+PL B169.ps BO D ROT
+PL D169.ps BO RDIS
+PL F169.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND170.OUT
+C 4000
+PR S170.out G I S B C
+PL B170.ps BO D ROT
+PL D170.ps BO RDIS
+PL F170.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND171.OUT
+C 4000
+PR S171.out G I S B C
+PL B171.ps BO D ROT
+PL D171.ps BO RDIS
+PL F171.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND172.OUT
+C 4000
+PR S172.out G I S B C
+PL B172.ps BO D ROT
+PL D172.ps BO RDIS
+PL F172.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND173.OUT
+C 4000
+PR S173.out G I S B C
+PL B173.ps BO D ROT
+PL D173.ps BO RDIS
+PL F173.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND174.OUT
+C 4000
+PR S174.out G I S B C
+PL B174.ps BO D ROT
+PL D174.ps BO RDIS
+PL F174.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND175.OUT
+C 4000
+PR S175.out G I S B C
+PL B175.ps BO D ROT
+PL D175.ps BO RDIS
+PL F175.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND176.OUT
+C 4000
+PR S176.out G I S B C
+PL B176.ps BO D ROT
+PL D176.ps BO RDIS
+PL F176.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND177.OUT
+C 4000
+PR S177.out G I S B C
+PL B177.ps BO D ROT
+PL D177.ps BO RDIS
+PL F177.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND178.OUT
+C 4000
+PR S178.out G I S B C
+PL B178.ps BO D ROT
+PL D178.ps BO RDIS
+PL F178.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND179.OUT
+C 4000
+PR S179.out G I S B C
+PL B179.ps BO D ROT
+PL D179.ps BO RDIS
+PL F179.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND180.OUT
+C 4000
+PR S180.out G I S B C
+PL B180.ps BO D ROT
+PL D180.ps BO RDIS
+PL F180.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND181.OUT
+C 4000
+PR S181.out G I S B C
+PL B181.ps BO D ROT
+PL D181.ps BO RDIS
+PL F181.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND182.OUT
+C 4000
+PR S182.out G I S B C
+PL B182.ps BO D ROT
+PL D182.ps BO RDIS
+PL F182.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND183.OUT
+C 4000
+PR S183.out G I S B C
+PL B183.ps BO D ROT
+PL D183.ps BO RDIS
+PL F183.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND184.OUT
+C 4000
+PR S184.out G I S B C
+PL B184.ps BO D ROT
+PL D184.ps BO RDIS
+PL F184.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND185.OUT
+C 4000
+PR S185.out G I S B C
+PL B185.ps BO D ROT
+PL D185.ps BO RDIS
+PL F185.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND186.OUT
+C 4000
+PR S186.out G I S B C
+PL B186.ps BO D ROT
+PL D186.ps BO RDIS
+PL F186.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND187.OUT
+C 4000
+PR S187.out G I S B C
+PL B187.ps BO D ROT
+PL D187.ps BO RDIS
+PL F187.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND188.OUT
+C 4000
+PR S188.out G I S B C
+PL B188.ps BO D ROT
+PL D188.ps BO RDIS
+PL F188.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND189.OUT
+C 4000
+PR S189.out G I S B C
+PL B189.ps BO D ROT
+PL D189.ps BO RDIS
+PL F189.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND190.OUT
+C 4000
+PR S190.out G I S B C
+PL B190.ps BO D ROT
+PL D190.ps BO RDIS
+PL F190.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE.SAV
+*
+* Move left wall
+GRID 0 0 0 0 0 0
+BFIL 1 BOND191.OUT
+C 4000
+PR S191.out G I S B C
+PL B191.ps BO D ROT
+PL D191.ps BO RDIS
+PL F191.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND192.OUT
+C 4000
+PR S192.out G I S B C
+PL B192.ps BO D ROT
+PL D192.ps BO RDIS
+PL F192.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND193.OUT
+C 4000
+PR S193.out G I S B C
+PL B193.ps BO D ROT
+PL D193.ps BO RDIS
+PL F193.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND194.OUT
+C 4000
+PR S194.out G I S B C
+PL B194.ps BO D ROT
+PL D194.ps BO RDIS
+PL F194.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND195.OUT
+C 4000
+PR S195.out G I S B C
+PL B195.ps BO D ROT
+PL D195.ps BO RDIS
+PL F195.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND196.OUT
+C 4000
+PR S196.out G I S B C
+PL B196.ps BO D ROT
+PL D196.ps BO RDIS
+PL F196.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND197.OUT
+C 4000
+PR S197.out G I S B C
+PL B197.ps BO D ROT
+PL D197.ps BO RDIS
+PL F197.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND198.OUT
+C 4000
+PR S198.out G I S B C
+PL B198.ps BO D ROT
+PL D198.ps BO RDIS
+PL F198.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND199.OUT
+C 4000
+PR S199.out G I S B C
+PL B199.ps BO D ROT
+PL D199.ps BO RDIS
+PL F199.ps BO F
+PL SAVE SAVE
+BFIL 0
+*
+* move left wall & create top particles
+GRID 0 0 0 0 0 0
+BFIL 1 BOND200.OUT
+C 4000
+PR S200.out G I S B C
+PL B200.ps BO D ROT
+PL D200.ps BO RDIS
+PL F200.ps BO F
+PL SAVE SAVE
+BFIL 0
+SAVE SAVE200.SAV
+*
+stop
